@@ -10,8 +10,18 @@ public class ProductItem : BaseAuditableEntity
 
     public int CategoryCode { get; set; }
 
+    public decimal Price { get; set; }
+
+    public int Priority { get; set; }
+
+    public bool IsAvailable { get; set; }
+
+    public bool IsVegetarian { get; set; }
+
+    public bool IsVegan { get; set; }
+
     // Navigation Property
-    public virtual ProductCategory? Category { get; }
+    public virtual ProductCategory? CategoryNav { get; }
 
     //public PriorityLevel Priority { get; set; }
 

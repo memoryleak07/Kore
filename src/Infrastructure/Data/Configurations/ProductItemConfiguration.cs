@@ -22,7 +22,7 @@ public class ProductItemConfiguration : IEntityTypeConfiguration<ProductItem>
         builder.Property(t => t.Description)
             .HasMaxLength(400);
 
-        builder.HasOne(t => t.Category)
+        builder.HasOne(t => t.CategoryNav)
             .WithMany(c => c.ProductItems)
             .HasForeignKey(t => t.CategoryCode)
             .OnDelete(DeleteBehavior.ClientSetNull);

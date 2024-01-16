@@ -10,6 +10,12 @@ public record CreateProductItemCommand : IRequest<int>
     public string? Title { get; init; }
     public string? Description { get; init; }
     public int CategoryId { get; init; }
+    public decimal Price { get; set; }
+    public int Priority { get; set; }
+    public bool IsAvailable { get; set; }
+    public bool IsVegetarian { get; set; }
+    public bool IsVegan { get; set; }
+
 }
 
 public class CreateProductItemCommandHandler : IRequestHandler<CreateProductItemCommand, int>

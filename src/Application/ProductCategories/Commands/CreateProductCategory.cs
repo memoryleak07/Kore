@@ -25,11 +25,9 @@ public class CreateProductCategoryCommandHandler : IRequestHandler<CreateProduct
     {
         var entity = new ProductCategory
         {
-            //ListId = request.ListId,
             Code = request.Code,
             Title = request.Title,
             Description = request.Description,
-            //Done = false
         };
 
         entity.AddDomainEvent(new ProductCategoryCreatedEvent(entity));

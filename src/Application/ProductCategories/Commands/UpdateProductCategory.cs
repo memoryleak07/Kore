@@ -1,4 +1,5 @@
 ﻿using Kore.Application.Common.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace Kore.Application.ProductCategories.Commands;
 

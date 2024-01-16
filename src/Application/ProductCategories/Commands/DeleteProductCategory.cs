@@ -22,7 +22,7 @@ public class DeleteProductCategoryCommandHandler : IRequestHandler<DeleteProduct
             .FirstAsync(x => x.Code == request.Code, cancellationToken);
 
         Guard.Against.NotFound(request.Code, entity);
-
+        
         _context.ProductCategories.Remove(entity);
 
         entity.AddDomainEvent(new ProductCategoryDeletedEvent(entity));

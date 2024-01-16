@@ -6,6 +6,31 @@
     "version": "1.0.0"
   },
   "paths": {
+    "/api/Emails": {
+      "post": {
+        "tags": [
+          "Emails"
+        ],
+        "operationId": "SendEmail",
+        "requestBody": {
+          "x-name": "command",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSmtpEmailSendCommand"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
     "/api/ProductCategories": {
       "get": {
         "tags": [
@@ -1081,6 +1106,24 @@
   },
   "components": {
     "schemas": {
+      "CreateSmtpEmailSendCommand": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "subject": {
+            "type": "string"
+          },
+          "body": {
+            "type": "string"
+          },
+          "from": {
+            "type": "string"
+          },
+          "to": {
+            "type": "string"
+          }
+        }
+      },
       "PaginatedListOfProductCategoryDTO": {
         "type": "object",
         "additionalProperties": false,
@@ -1220,8 +1263,37 @@
           "description": {
             "type": "string",
             "nullable": true
+          },
+          "priority": {
+            "$ref": "#/components/schemas/PriorityLevel"
+          },
+          "price": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "isVegetarian": {
+            "type": "boolean"
+          },
+          "isVegan": {
+            "type": "boolean"
           }
         }
+      },
+      "PriorityLevel": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "None",
+          "Low",
+          "Medium",
+          "High"
+        ],
+        "enum": [
+          0,
+          1,
+          2,
+          3
+        ]
       },
       "CreateProductItemCommand": {
         "type": "object",
@@ -1247,6 +1319,23 @@
           "categoryId": {
             "type": "integer",
             "format": "int32"
+          },
+          "price": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "priority": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "isAvailable": {
+            "type": "boolean"
+          },
+          "isVegetarian": {
+            "type": "boolean"
+          },
+          "isVegan": {
+            "type": "boolean"
           }
         }
       },
@@ -1385,22 +1474,6 @@
             "nullable": true
           }
         }
-      },
-      "PriorityLevel": {
-        "type": "integer",
-        "description": "",
-        "x-enumNames": [
-          "None",
-          "Low",
-          "Medium",
-          "High"
-        ],
-        "enum": [
-          0,
-          1,
-          2,
-          3
-        ]
       },
       "TodosVm": {
         "type": "object",
